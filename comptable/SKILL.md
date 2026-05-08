@@ -233,6 +233,25 @@ Règle de calcul : pour tout calcul chiffré (TVA, IS, amortissement, prorata, C
 
 Les templates HTML utilisent des placeholders `{{company.name}}`, `{{company.siren}}`, etc. remplis depuis `company.json`.
 
+## Spécificités DOM — La Réunion (Gigarun)
+
+> **Règle Gigarun** : Les clients de Gigarun sont principalement basés à La Réunion (DOM). Appliquer systématiquement les règles DOM sauf indication contraire.
+
+Lire [references/regional.md](references/regional.md) pour le détail complet. Règles prioritaires :
+
+| Sujet | Réunion (DOM) | Métropole |
+|-------|--------------|-----------|
+| TVA normale | **8,5%** | 20% |
+| TVA réduite | **2,1%** | 5,5% / 10% |
+| IS (abattement) | **50%** (plafonné 150 000€/an, secteurs éligibles) | 0% |
+| Octroi de mer | **Oui** (compte 6353) | Non |
+| Charges patronales | **Réduction LODEOM** | Régime général |
+
+**Règle absolue** : Appliquer TVA 8,5% et régime DOM par défaut sur tous les dossiers, sans exception et sans demander confirmation. Gigarun travaille exclusivement à La Réunion (974). Ne basculer sur le régime métropole que si `company.json` indique explicitement `"departement": "metropole"` ou un code département hors DOM.
+
+**Facturation DOM → Métropole** : exonération TVA (considéré comme exportation).
+**Métropole → DOM** : octroi de mer applicable à l'import.
+
 ## Clôture Annuelle
 
 Suivre le workflow en 12 étapes dans [references/cloture-workflow.md](references/cloture-workflow.md).
