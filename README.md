@@ -12,7 +12,7 @@
 ---
 
 <p align="center">
-  <img src="assets/banner.jpg" alt="Paperasse" width="100%">
+  <img src="assets/banner974.jpg" alt="Paperasse 974 — Fork Gigarun La Réunion" width="100%">
 </p>
 
 <h1 align="center">Paperasse</h1>
