@@ -185,6 +185,62 @@
         "L'amende pour défaut de transmission est mentionnée (250 EUR par transmission)",
         "L'échéance est correcte (1er septembre 2027 pour PME/micro)"
       ]
+    },
+    {
+      "id": 11,
+      "name": "tva-reunion-dom-defaut",
+      "prompt": "Génère une facture pour ma société GigaruN (SASU, SIREN 123456789, La Réunion) pour une prestation de maintenance informatique de 1 000 € HT à un client réunionnais.",
+      "expected_output": "Le skill applique automatiquement la TVA DOM à 8,5% (85 EUR) sans que le taux soit précisé dans le prompt, et génère une facture conforme avec le total TTC de 1 085 EUR.",
+      "files": [],
+      "assertions": [
+        "Le taux TVA appliqué est 8,5% (DOM La Réunion) et non 20%",
+        "Le montant TVA est 85 EUR",
+        "Le total TTC est 1 085 EUR",
+        "La mention du taux 8,5% est explicite sur la facture",
+        "Le skill n'a pas demandé de confirmation du taux TVA"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "tva-reunion-client-metropole",
+      "prompt": "Ma société est à La Réunion. Je facture une prestation à un client en métropole (Paris). Quel taux TVA j'applique ?",
+      "expected_output": "Le skill explique que la facturation DOM vers Métropole est considérée comme une exportation, exonérée de TVA (0%), avec droit à déduction. La facture doit mentionner l'exonération.",
+      "files": [],
+      "assertions": [
+        "La facturation DOM → Métropole est qualifiée d'exportation",
+        "Le taux TVA applicable est 0% (exonération)",
+        "Le droit à déduction de la TVA sur les achats est mentionné",
+        "La mention d'exonération à faire figurer sur la facture est indiquée"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "zfang-eligibilite-reunion",
+      "prompt": "Je dirige une SASU de développement web à La Réunion, 3 salariés, CA 400 000 EUR. Suis-je éligible à la ZFANG et quel abattement puis-je espérer sur mon IS ?",
+      "expected_output": "Le skill identifie l'éligibilité ZFANG, applique le régime majoré 80% (TIC = secteur prioritaire), calcule l'abattement sur la base IS dans la limite de 300 000 EUR, et mentionne le formulaire 2082-SD à joindre à la 2065.",
+      "files": [],
+      "assertions": [
+        "La ZFANG est identifiée comme applicable (art. 44 quaterdecies CGI)",
+        "Le secteur TIC est reconnu comme secteur prioritaire (régime majoré)",
+        "Le taux d'abattement annoncé est 80%",
+        "Le plafond de 300 000 EUR de bénéfice abattu est mentionné",
+        "Le formulaire 2082-SD (CERFA 14043) est mentionné comme obligatoire",
+        "La durée du dispositif (jusqu'au 31/12/2030) est précisée"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "zfang-calcul-is",
+      "prompt": "Ma SASU à La Réunion (secteur TIC) a réalisé un bénéfice fiscal de 180 000 EUR en 2025. Calcule mon IS avec la ZFANG.",
+      "expected_output": "Le skill applique l'abattement ZFANG 80% plafonné à 300 000 EUR, calcule la base IS résiduelle (36 000 EUR), puis applique le taux IS PME 15% sur la tranche < 42 500 EUR.",
+      "files": [],
+      "assertions": [
+        "L'abattement ZFANG de 80% est appliqué sur 180 000 EUR = 144 000 EUR",
+        "La base IS résiduelle est 36 000 EUR",
+        "Le taux IS PME 15% est appliqué (bénéfice < 42 500 EUR)",
+        "L'IS calculé est 5 400 EUR",
+        "Le plafond ZFANG de 300 000 EUR est mentionné (non atteint ici)"
+      ]
     }
   ]
 }
