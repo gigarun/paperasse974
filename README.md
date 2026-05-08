@@ -1,4 +1,17 @@
 <p align="center">
+  <img src="https://flagcdn.com/w40/re.png" alt="La Réunion" /> <strong>Fork Gigarun — La Réunion (974)</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/romainsimon/paperasse">↗ Basé sur romainsimon/paperasse</a> &nbsp;|&nbsp;
+  TVA 8,5% par défaut &nbsp;|&nbsp;
+  ZFANG intégrée (art. 44 quaterdecies CGI) &nbsp;|&nbsp;
+  Règles DOM complètes
+</p>
+
+---
+
+<p align="center">
   <img src="assets/banner.jpg" alt="Paperasse" width="100%">
 </p>
 
