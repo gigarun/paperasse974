@@ -54,6 +54,26 @@ git merge upstream/master
 # Résoudre les conflits éventuels sur comptable/SKILL.md et comptable/references/regional.md
 ```
 
+Après chaque merge upstream, synchroniser les skills locaux (voir ci-dessous).
+
+---
+
+## Sync des skills locaux
+
+Le script `_paperasse974-push/sync.ps1` copie les `SKILL.md` et `references/` du repo vers `~/.claude/skills/` (Exocortex), en UTF-8 sans BOM + LF.
+
+```powershell
+# Aperçu des changements
+.\\_paperasse974-push\\sync.ps1 -DryRun
+
+# Appliquer
+.\\_paperasse974-push\\sync.ps1
+```
+
+**Ce qui est synchronisé :** `SKILL.md` + `references/` de chaque skill (comptable, fiscaliste, notaire, controleur-fiscal, commissaire-aux-comptes, syndic).
+
+**Ce qui est ignoré :** `evals/`, `scripts/`, `templates/`, `data/` — fichiers repo uniquement, non lus au runtime par Claude Code.
+
 ---
 
 ## Maintenu par
