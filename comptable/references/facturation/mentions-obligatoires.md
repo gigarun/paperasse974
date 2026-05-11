@@ -151,3 +151,44 @@ Quand le client émet la facture pour le compte du fournisseur. Mention obligato
 ### Facture en devise étrangère
 
 Le montant de TVA doit être converti en euros au taux de change du jour de l'opération.
+
+---
+
+## Spécificités DOM — La Réunion (974), Guadeloupe, Martinique
+
+### Taux de TVA applicables
+
+| Taux | Application |
+|------|-------------|
+| **8,5%** | Taux normal (vs 20% en métropole) |
+| 2,1% | Taux réduit |
+| 1,75% | Taux particulier (presse) |
+| 1,05% | Taux super-réduit |
+
+La facture doit mentionner le taux DOM explicitement (`TVA 8,5%`). Ne pas utiliser le taux métropole.
+
+### Facturation DOM → Métropole (export)
+
+```
+Exonération de TVA, article 262 I du CGI
+```
+
+Pas de TVA collectée. La TVA sur les achats reste déductible.
+
+### Facturation Métropole → DOM (importation)
+
+La TVA DOM (8,5%) est due par l'importateur. L'octroi de mer peut s'appliquer en sus.
+
+### Octroi de mer
+
+Taxe spécifique sur les importations et productions locales dans les DOM. Taux variable (0% à 60%) selon le produit et le département. Déclaration mensuelle auprès de la douane.
+
+**Ne pas confondre** avec la TVA — deux taxes distinctes. L'octroi de mer n'apparaît pas sur la facture du prestataire de services ; il concerne les biens.
+
+### Guyane et Mayotte
+
+TVA non applicable (art. 294 du CGI) :
+
+```
+TVA non applicable - Article 294 du CGI
+```

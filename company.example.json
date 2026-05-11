@@ -19,10 +19,12 @@
     "end": "2025-12-31",
     "is_first_year": false
   },
+  "departement": "974",
   "tax": {
-    "regime_tva": "franchise",
+    "regime_tva": "reel_normal",
     "regime_is": "reel_simplifie",
-    "tva_rate": 0.20
+    "tva_rate": 0.085,
+    "_comment_tva": "DOM La Réunion : 8,5% (taux normal). Mettre 0.20 si departement=metropole. Mettre 0 si Guyane/Mayotte (exonéré)."
   },
   "banks": [
     {

@@ -35,7 +35,7 @@
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
 │                              Total HT :     {{total_ht}} EUR    │
-│                              TVA (20%) :    {{tva}} EUR         │
+│                              TVA ({{tva_rate_label}}) : {{tva}} EUR │
 │                              Total TTC :    {{total_ttc}} EUR   │
 │                                                                 │
 │  OU (si franchise en base) :                                    │
