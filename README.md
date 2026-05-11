@@ -27,7 +27,7 @@
 
 <p align="center">
   <a href="https://github.com/romainsimon/paperasse/stargazers"><img src="https://img.shields.io/github/stars/romainsimon/paperasse" alt="GitHub stars"></a>
-  <img src="https://img.shields.io/badge/evals-88%25_with_skill_%7C_75%25_without_%7C_%2B13%25_delta-brightgreen" alt="Evals: 88% with skill | 75% without | +13% delta">
+  <img src="https://img.shields.io/badge/evals-89%25_with_skill_%7C_76%25_without_%7C_%2B13%25_delta-brightgreen" alt="Evals: 89% with skill | 76% without | +13% delta">
   <a href="https://github.com/romainsimon/paperasse/blob/master/LICENSE"><img src="https://img.shields.io/github/license/romainsimon/paperasse?style=flat&color=blue" alt="License"></a>
 </p>
 

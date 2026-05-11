@@ -1,44 +1,44 @@
-{
+﻿{
   "skill_name": "comptable",
   "evals": [
     {
       "id": 1,
       "name": "config-company-json",
-      "prompt": "Je veux configurer Paperasse pour ma société DevStudio. C'est une SASU de développement web (NAF 6201Z), SIREN 123456789, siège au 5 rue de la Paix 75002 Paris, capital 1000 EUR, exercice du 01/01 au 31/12, je suis en franchise de TVA. Génère le company.json correspondant.",
-      "expected_output": "Le skill génère un company.json structuré avec tous les champs obligatoires, déduit le régime IS de la forme SASU, et applique le format attendu par Paperasse.",
+      "prompt": "Je veux configurer Paperasse pour ma sociÃ©tÃ© DevStudio. C'est une SASU de dÃ©veloppement web (NAF 6201Z), SIREN 123456789, siÃ¨ge au 5 rue de la Paix 75002 Paris, capital 1000 EUR, exercice du 01/01 au 31/12, je suis en franchise de TVA. GÃ©nÃ¨re le company.json correspondant.",
+      "expected_output": "Le skill gÃ©nÃ¨re un company.json structurÃ© avec tous les champs obligatoires, dÃ©duit le rÃ©gime IS de la forme SASU, et applique le format attendu par Paperasse.",
       "files": [],
       "assertions": [
         "Le company.json contient le nom 'DevStudio'",
-        "La forme juridique SASU est présente",
-        "Le SIREN 123456789 est présent",
-        "Le régime d'imposition IS est déduit de la forme SASU",
-        "Le régime TVA franchise est configuré",
-        "Les dates d'exercice (01/01 au 31/12) sont présentes",
-        "Le capital social 1000 EUR est présent",
-        "Le code NAF 6201Z est présent"
+        "La forme juridique SASU est prÃ©sente",
+        "Le SIREN 123456789 est prÃ©sent",
+        "Le rÃ©gime d'imposition IS est dÃ©duit de la forme SASU",
+        "Le rÃ©gime TVA franchise est configurÃ©",
+        "Les dates d'exercice (01/01 au 31/12) sont prÃ©sentes",
+        "Le capital social 1000 EUR est prÃ©sent",
+        "Le code NAF 6201Z est prÃ©sent"
       ]
     },
     {
       "id": 2,
       "name": "config-integrations",
-      "prompt": "Ma société NovaTech (SAS, Lyon, SIREN 987654321) utilise Qonto et Stripe pour son SaaS. Comment configurer company.json et le fichier .env pour les intégrations bancaires ? Montre-moi les fichiers complets.",
-      "expected_output": "Le skill montre la configuration company.json avec les intégrations Qonto et Stripe activées, et le fichier .env avec les clés API séparées. Le régime IS est déduit de la forme SAS.",
+      "prompt": "Ma sociÃ©tÃ© NovaTech (SAS, Lyon, SIREN 987654321) utilise Qonto et Stripe pour son SaaS. Comment configurer company.json et le fichier .env pour les intÃ©grations bancaires ? Montre-moi les fichiers complets.",
+      "expected_output": "Le skill montre la configuration company.json avec les intÃ©grations Qonto et Stripe activÃ©es, et le fichier .env avec les clÃ©s API sÃ©parÃ©es. Le rÃ©gime IS est dÃ©duit de la forme SAS.",
       "files": [],
       "assertions": [
-        "Le company.json contient qonto.enabled: true (ou équivalent)",
+        "Le company.json contient qonto.enabled: true (ou Ã©quivalent)",
         "Le company.json contient une section stripe_accounts",
-        "Les clés API Qonto (QONTO_ID, QONTO_API_SECRET) sont dans .env et pas dans company.json",
-        "La clé secrète Stripe (STRIPE_SECRET_KEY) est dans .env",
-        "Le régime IS est mentionné ou déduit pour une SAS",
-        "Les scripts npm run fetch:qonto et fetch:stripe sont mentionnés",
+        "Les clÃ©s API Qonto (QONTO_ID, QONTO_API_SECRET) sont dans .env et pas dans company.json",
+        "La clÃ© secrÃ¨te Stripe (STRIPE_SECRET_KEY) est dans .env",
+        "Le rÃ©gime IS est mentionnÃ© ou dÃ©duit pour une SAS",
+        "Les scripts npm run fetch:qonto et fetch:stripe sont mentionnÃ©s",
         "La structure du company.json suit le format Paperasse (name, legal_form, siren, fiscal_year, tax, integrations)"
       ]
     },
     {
       "id": 3,
       "name": "cloture-categorisation",
-      "prompt": "Je veux commencer la clôture de l'exercice 2025 pour TechFlow. Pour l'instant, catégorise les transactions et fais le rapprochement bancaire. Les transactions Qonto sont dans data/transactions/qonto-main.json et les transactions Stripe dans data/transactions/stripe-saas.json.",
-      "expected_output": "Le skill catégorise chaque transaction avec le bon compte PCG, enregistre le CA Stripe en brut avec frais séparés, traite le remboursement, et croise les payouts Stripe avec les crédits Qonto.",
+      "prompt": "Je veux commencer la clÃ´ture de l'exercice 2025 pour TechFlow. Pour l'instant, catÃ©gorise les transactions et fais le rapprochement bancaire. Les transactions Qonto sont dans data/transactions/qonto-main.json et les transactions Stripe dans data/transactions/stripe-saas.json.",
+      "expected_output": "Le skill catÃ©gorise chaque transaction avec le bon compte PCG, enregistre le CA Stripe en brut avec frais sÃ©parÃ©s, traite le remboursement, et croise les payouts Stripe avec les crÃ©dits Qonto.",
       "files": [
         "evals/files/company-techflow.json",
         "evals/files/qonto-transactions.json",
@@ -46,200 +46,200 @@
       ],
       "assertions": [
         "Le skill lit company.json et identifie TechFlow",
-        "Chaque transaction Qonto est associée à un compte PCG (Hetzner → 6135, GitHub → 6135, OVH domaine → 651, frais bancaires → 627, MacBook → 2183)",
-        "Le CA Stripe est enregistré en brut (706) et les frais Stripe en charges (6278)",
-        "Le remboursement Stripe (txn_009) est comptabilisé correctement (avoir ou extourne)",
-        "Le rapprochement bancaire croise les payouts Stripe avec les crédits Qonto",
-        "Le remboursement du compte courant associé (200 EUR) est enregistré au compte 455",
-        "Les écritures sont présentées dans un format structuré avec date, journal, comptes, libellé, montants"
+        "Chaque transaction Qonto est associÃ©e Ã  un compte PCG (Hetzner â†’ 6135, GitHub â†’ 6135, OVH domaine â†’ 651, frais bancaires â†’ 627, MacBook â†’ 2183)",
+        "Le CA Stripe est enregistrÃ© en brut (706) et les frais Stripe en charges (6278)",
+        "Le remboursement Stripe (txn_009) est comptabilisÃ© correctement (avoir ou extourne)",
+        "Le rapprochement bancaire croise les payouts Stripe avec les crÃ©dits Qonto",
+        "Le remboursement du compte courant associÃ© (200 EUR) est enregistrÃ© au compte 455",
+        "Les Ã©critures sont prÃ©sentÃ©es dans un format structurÃ© avec date, journal, comptes, libellÃ©, montants"
       ]
     },
     {
       "id": 4,
       "name": "cloture-inventaire-is",
-      "prompt": "Suite de la clôture TechFlow 2025. Les transactions sont catégorisées. Maintenant fais les écritures d'inventaire (amortissements, PCA), calcule l'IS, et génère le journal d'écritures. Les données sont dans data/transactions/.",
-      "expected_output": "Le skill calcule l'amortissement du MacBook avec prorata, identifie le PCA sur l'abonnement annuel, calcule l'IS au taux réduit, et génère le journal et les états financiers.",
+      "prompt": "Suite de la clÃ´ture TechFlow 2025. Les transactions sont catÃ©gorisÃ©es. Maintenant fais les Ã©critures d'inventaire (amortissements, PCA), calcule l'IS, et gÃ©nÃ¨re le journal d'Ã©critures. Les donnÃ©es sont dans data/transactions/.",
+      "expected_output": "Le skill calcule l'amortissement du MacBook avec prorata, identifie le PCA sur l'abonnement annuel, calcule l'IS au taux rÃ©duit, et gÃ©nÃ¨re le journal et les Ã©tats financiers.",
       "files": [
         "evals/files/company-techflow.json",
         "evals/files/qonto-transactions.json",
         "evals/files/stripe-transactions.json"
       ],
       "assertions": [
-        "Le MacBook à 599 EUR est immobilisé (>500 EUR) et amorti sur 3 ans avec prorata temporis",
-        "Un PCA est calculé pour l'abonnement annuel Client F (290 EUR, oct 2025 à sept 2026)",
-        "L'IS est calculé avec le taux réduit 15% (résultat < 42 500 EUR)",
-        "Le bilan est équilibré (actif = passif)",
-        "Les écritures d'inventaire sont datées au 31/12/2025",
-        "Le résultat net est correctement calculé (produits - charges - IS)"
+        "Le MacBook Ã  599 EUR est immobilisÃ© (>500 EUR) et amorti sur 3 ans avec prorata temporis",
+        "Un PCA est calculÃ© pour l'abonnement annuel Client F (290 EUR, oct 2025 Ã  sept 2026)",
+        "L'IS est calculÃ© avec le taux rÃ©duit 15% (rÃ©sultat < 42 500 EUR)",
+        "Le bilan est Ã©quilibrÃ© (actif = passif)",
+        "Les Ã©critures d'inventaire sont datÃ©es au 31/12/2025",
+        "Le rÃ©sultat net est correctement calculÃ© (produits - charges - IS)"
       ]
     },
     {
       "id": 5,
       "name": "cloture-premier-exercice",
-      "prompt": "Ma société TechFlow a été créée le 25/02/2025. Je veux faire la clôture de mon premier exercice (25/02/2025 au 31/12/2025). Les transactions sont dans data/transactions/.",
-      "expected_output": "Le skill gère les spécificités du premier exercice : prorata temporis pour les amortissements (309 jours au lieu de 365), prorata du seuil IS à taux réduit (42500 * 309/365), vérification du seuil franchise TVA sur la période courte.",
+      "prompt": "Ma sociÃ©tÃ© TechFlow a Ã©tÃ© crÃ©Ã©e le 25/02/2025. Je veux faire la clÃ´ture de mon premier exercice (25/02/2025 au 31/12/2025). Les transactions sont dans data/transactions/.",
+      "expected_output": "Le skill gÃ¨re les spÃ©cificitÃ©s du premier exercice : prorata temporis pour les amortissements (309 jours au lieu de 365), prorata du seuil IS Ã  taux rÃ©duit (42500 * 309/365), vÃ©rification du seuil franchise TVA sur la pÃ©riode courte.",
       "files": [
         "evals/files/company-techflow.json",
         "evals/files/qonto-transactions.json",
         "evals/files/stripe-transactions.json"
       ],
       "assertions": [
-        "L'exercice est identifié comme premier exercice (durée inférieure à 12 mois)",
-        "Le prorata temporis est appliqué aux amortissements du MacBook (mis en service en octobre, prorata oct-déc)",
-        "Le seuil IS à taux réduit est proratisé sur la durée de l'exercice",
-        "Le seuil de franchise TVA est surveillé sur la période courte",
-        "Les dépenses antérieures à la création (25/02/2025) ne sont pas incluses"
+        "L'exercice est identifiÃ© comme premier exercice (durÃ©e infÃ©rieure Ã  12 mois)",
+        "Le prorata temporis est appliquÃ© aux amortissements du MacBook (mis en service en octobre, prorata oct-dÃ©c)",
+        "Le seuil IS Ã  taux rÃ©duit est proratisÃ© sur la durÃ©e de l'exercice",
+        "Le seuil de franchise TVA est surveillÃ© sur la pÃ©riode courte",
+        "Les dÃ©penses antÃ©rieures Ã  la crÃ©ation (25/02/2025) ne sont pas incluses"
       ]
     },
     {
       "id": 6,
       "name": "facturation-diagnostic-conformite-2026",
-      "prompt": "Ma société WebCraft est une SASU en franchise en base de TVA. Suis-je concernée par la facturation électronique obligatoire en 2026 ? Que dois-je faire et quand ?",
-      "expected_output": "Le skill identifie que l'entreprise est assujettie à la TVA (même en franchise), détermine la taille (micro/PME), donne les échéances (réception sept. 2026, émission sept. 2027), recommande de choisir une PA, et mentionne les nouvelles mentions obligatoires.",
+      "prompt": "Ma sociÃ©tÃ© WebCraft est une SASU en franchise en base de TVA. Suis-je concernÃ©e par la facturation Ã©lectronique obligatoire en 2026 ? Que dois-je faire et quand ?",
+      "expected_output": "Le skill identifie que l'entreprise est assujettie Ã  la TVA (mÃªme en franchise), dÃ©termine la taille (micro/PME), donne les Ã©chÃ©ances (rÃ©ception sept. 2026, Ã©mission sept. 2027), recommande de choisir une PA, et mentionne les nouvelles mentions obligatoires.",
       "files": [
         "evals/files/company-webdev.json"
       ],
       "assertions": [
-        "Le skill identifie que WebCraft est assujettie à la TVA même en franchise en base",
-        "L'échéance de réception est mentionnée : 1er septembre 2026",
-        "L'échéance d'émission est mentionnée : 1er septembre 2027 (car PME/micro)",
-        "Le skill recommande de choisir une plateforme agréée (PA)",
-        "Au moins une PA gratuite est mentionnée (Qonto, Indy, Pennylane ou Dext)",
-        "Les nouvelles mentions obligatoires 2026 sont citées (SIREN client, catégorie d'opération)",
-        "L'e-reporting est mentionné comme obligation complémentaire",
-        "Le skill mentionne que le PPF ne sert plus à émettre/recevoir des factures"
+        "Le skill identifie que WebCraft est assujettie Ã  la TVA mÃªme en franchise en base",
+        "L'Ã©chÃ©ance de rÃ©ception est mentionnÃ©e : 1er septembre 2026",
+        "L'Ã©chÃ©ance d'Ã©mission est mentionnÃ©e : 1er septembre 2027 (car PME/micro)",
+        "Le skill recommande de choisir une plateforme agrÃ©Ã©e (PA)",
+        "Au moins une PA gratuite est mentionnÃ©e (Qonto, Indy, Pennylane ou Dext)",
+        "Les nouvelles mentions obligatoires 2026 sont citÃ©es (SIREN client, catÃ©gorie d'opÃ©ration)",
+        "L'e-reporting est mentionnÃ© comme obligation complÃ©mentaire",
+        "Le skill mentionne que le PPF ne sert plus Ã  Ã©mettre/recevoir des factures"
       ]
     },
     {
       "id": 7,
       "name": "facturation-generer-facture-conforme",
-      "prompt": "Génère une facture pour mon client TechSolutions SAS (SIREN 987654321, 45 avenue de la République, 75011 Paris) pour une prestation de développement d'application web, 10 jours de travail à 500 EUR/jour. Paiement à 30 jours par virement.",
-      "expected_output": "Le skill génère une facture complète avec toutes les mentions obligatoires, incluant les nouvelles mentions 2026 (SIREN client, catégorie prestation de services), la mention franchise TVA, les pénalités de retard et l'indemnité de 40 EUR.",
+      "prompt": "GÃ©nÃ¨re une facture pour mon client TechSolutions SAS (SIREN 987654321, 45 avenue de la RÃ©publique, 75011 Paris) pour une prestation de dÃ©veloppement d'application web, 10 jours de travail Ã  500 EUR/jour. Paiement Ã  30 jours par virement.",
+      "expected_output": "Le skill gÃ©nÃ¨re une facture complÃ¨te avec toutes les mentions obligatoires, incluant les nouvelles mentions 2026 (SIREN client, catÃ©gorie prestation de services), la mention franchise TVA, les pÃ©nalitÃ©s de retard et l'indemnitÃ© de 40 EUR.",
       "files": [
         "evals/files/company-webdev.json"
       ],
       "assertions": [
-        "L'identité complète de WebCraft est présente (nom, SASU, adresse, SIRET)",
-        "L'identité du client est complète (TechSolutions SAS, adresse, SIREN 987654321)",
-        "Un numéro de facture est attribué (format séquentiel)",
-        "La date d'émission est présente",
-        "La désignation est précise (développement application web)",
-        "La quantité (10 jours) et le prix unitaire (500 EUR) sont indiqués",
+        "L'identitÃ© complÃ¨te de WebCraft est prÃ©sente (nom, SASU, adresse, SIRET)",
+        "L'identitÃ© du client est complÃ¨te (TechSolutions SAS, adresse, SIREN 987654321)",
+        "Un numÃ©ro de facture est attribuÃ© (format sÃ©quentiel)",
+        "La date d'Ã©mission est prÃ©sente",
+        "La dÃ©signation est prÃ©cise (dÃ©veloppement application web)",
+        "La quantitÃ© (10 jours) et le prix unitaire (500 EUR) sont indiquÃ©s",
         "Le montant total est correct (5 000 EUR)",
-        "La mention franchise TVA est présente (art. 293 B du CGI)",
-        "La date d'échéance est calculée (30 jours après émission)",
-        "Les pénalités de retard sont mentionnées",
-        "L'indemnité forfaitaire de recouvrement de 40 EUR est mentionnée",
-        "La catégorie d'opération est indiquée (prestation de services)"
+        "La mention franchise TVA est prÃ©sente (art. 293 B du CGI)",
+        "La date d'Ã©chÃ©ance est calculÃ©e (30 jours aprÃ¨s Ã©mission)",
+        "Les pÃ©nalitÃ©s de retard sont mentionnÃ©es",
+        "L'indemnitÃ© forfaitaire de recouvrement de 40 EUR est mentionnÃ©e",
+        "La catÃ©gorie d'opÃ©ration est indiquÃ©e (prestation de services)"
       ]
     },
     {
       "id": 8,
       "name": "facturation-choix-pa-auto-entrepreneur",
-      "prompt": "Je suis auto-entrepreneur en services informatiques, je facture environ 5 clients par mois, tous en France. Je n'ai pas de compte Qonto. Quelle plateforme agréée me recommandes-tu pour la facturation électronique ?",
-      "expected_output": "Le skill recommande une PA gratuite adaptée au profil (auto-entrepreneur, faible volume, B2B France), compare les options, et justifie le choix.",
+      "prompt": "Je suis auto-entrepreneur en services informatiques, je facture environ 5 clients par mois, tous en France. Je n'ai pas de compte Qonto. Quelle plateforme agrÃ©Ã©e me recommandes-tu pour la facturation Ã©lectronique ?",
+      "expected_output": "Le skill recommande une PA gratuite adaptÃ©e au profil (auto-entrepreneur, faible volume, B2B France), compare les options, et justifie le choix.",
       "files": [],
       "assertions": [
-        "Au moins deux PA gratuites sont comparées",
-        "Les critères de comparaison incluent le coût (gratuit), la facilité d'utilisation, et le public cible",
-        "La recommandation est justifiée par le profil (auto-entrepreneur, faible volume)",
-        "Le skill mentionne de vérifier que la PA est bien immatriculée sur impots.gouv.fr",
-        "L'échéance de réception (sept. 2026) est rappelée",
-        "L'e-reporting est abordé (ventes B2B → pas de reporting spécifique, géré par la facturation électronique)"
+        "Au moins deux PA gratuites sont comparÃ©es",
+        "Les critÃ¨res de comparaison incluent le coÃ»t (gratuit), la facilitÃ© d'utilisation, et le public cible",
+        "La recommandation est justifiÃ©e par le profil (auto-entrepreneur, faible volume)",
+        "Le skill mentionne de vÃ©rifier que la PA est bien immatriculÃ©e sur impots.gouv.fr",
+        "L'Ã©chÃ©ance de rÃ©ception (sept. 2026) est rappelÃ©e",
+        "L'e-reporting est abordÃ© (ventes B2B â†’ pas de reporting spÃ©cifique, gÃ©rÃ© par la facturation Ã©lectronique)"
       ]
     },
     {
       "id": 9,
       "name": "facturation-validation-facture-incomplete",
-      "prompt": "Vérifie cette facture :\n\nFacture N° 2026-042\nDate : 15/09/2026\n\nWebCraft SASU\n12 rue du Commerce, Lyon\n\nClient : Jean Martin\n\nPrestation de conseil : 2 000 EUR\n\nÀ payer sous 30 jours.",
-      "expected_output": "Le skill identifie les mentions manquantes : SIRET émetteur, SIREN client (si B2B), mention franchise TVA, pénalités de retard, indemnité 40 EUR, catégorie d'opération (2026), quantité et prix unitaire, capital social et RCS.",
+      "prompt": "VÃ©rifie cette facture :\n\nFacture NÂ° 2026-042\nDate : 15/09/2026\n\nWebCraft SASU\n12 rue du Commerce, Lyon\n\nClient : Jean Martin\n\nPrestation de conseil : 2 000 EUR\n\nÃ€ payer sous 30 jours.",
+      "expected_output": "Le skill identifie les mentions manquantes : SIRET Ã©metteur, SIREN client (si B2B), mention franchise TVA, pÃ©nalitÃ©s de retard, indemnitÃ© 40 EUR, catÃ©gorie d'opÃ©ration (2026), quantitÃ© et prix unitaire, capital social et RCS.",
       "files": [
         "evals/files/company-webdev.json"
       ],
       "assertions": [
-        "Le SIRET de l'émetteur est identifié comme manquant",
-        "Le SIREN du client est identifié comme manquant (ou demande de clarification B2B/B2C)",
-        "La mention franchise TVA (art. 293 B) est identifiée comme manquante",
-        "Les pénalités de retard sont identifiées comme manquantes",
-        "L'indemnité forfaitaire de 40 EUR est identifiée comme manquante",
-        "La quantité et le prix unitaire détaillés sont identifiés comme manquants",
-        "La forme juridique, le capital social ou le RCS sont identifiés comme manquants",
-        "La catégorie d'opération (prestation de services) est mentionnée comme manquante pour 2026",
-        "Le skill propose une version corrigée ou une liste de corrections"
+        "Le SIRET de l'Ã©metteur est identifiÃ© comme manquant",
+        "Le SIREN du client est identifiÃ© comme manquant (ou demande de clarification B2B/B2C)",
+        "La mention franchise TVA (art. 293 B) est identifiÃ©e comme manquante",
+        "Les pÃ©nalitÃ©s de retard sont identifiÃ©es comme manquantes",
+        "L'indemnitÃ© forfaitaire de 40 EUR est identifiÃ©e comme manquante",
+        "La quantitÃ© et le prix unitaire dÃ©taillÃ©s sont identifiÃ©s comme manquants",
+        "La forme juridique, le capital social ou le RCS sont identifiÃ©s comme manquants",
+        "La catÃ©gorie d'opÃ©ration (prestation de services) est mentionnÃ©e comme manquante pour 2026",
+        "Le skill propose une version corrigÃ©e ou une liste de corrections"
       ]
     },
     {
       "id": 10,
       "name": "facturation-e-reporting-saas-b2c",
-      "prompt": "Mon SaaS WebCraft vend des abonnements à des particuliers via Stripe. Je suis en franchise TVA. Quelles sont mes obligations d'e-reporting à partir de 2027 ?",
-      "expected_output": "Le skill explique les obligations d'e-reporting B2C : transmission des données de transactions (totaux par période), fréquence semestrielle pour la franchise, pas d'e-reporting de paiement car pas de TVA à l'encaissement. Mentionne que la PA gère la transmission.",
+      "prompt": "Mon SaaS WebCraft vend des abonnements Ã  des particuliers via Stripe. Je suis en franchise TVA. Quelles sont mes obligations d'e-reporting Ã  partir de 2027 ?",
+      "expected_output": "Le skill explique les obligations d'e-reporting B2C : transmission des donnÃ©es de transactions (totaux par pÃ©riode), frÃ©quence semestrielle pour la franchise, pas d'e-reporting de paiement car pas de TVA Ã  l'encaissement. Mentionne que la PA gÃ¨re la transmission.",
       "files": [
         "evals/files/company-webdev.json"
       ],
       "assertions": [
-        "L'e-reporting de transactions B2C est expliqué (ventes aux particuliers)",
-        "La fréquence de transmission est correcte (semestrielle pour franchise en base)",
-        "Les données à transmettre sont décrites (bases HT par taux, montants TVA cumulés)",
-        "Le skill précise que l'e-reporting de paiement ne s'applique pas en franchise TVA",
-        "Le rôle de la PA dans la transmission est mentionné",
-        "L'amende pour défaut de transmission est mentionnée (250 EUR par transmission)",
-        "L'échéance est correcte (1er septembre 2027 pour PME/micro)"
+        "L'e-reporting de transactions B2C est expliquÃ© (ventes aux particuliers)",
+        "La frÃ©quence de transmission est correcte (semestrielle pour franchise en base)",
+        "Les donnÃ©es Ã  transmettre sont dÃ©crites (bases HT par taux, montants TVA cumulÃ©s)",
+        "Le skill prÃ©cise que l'e-reporting de paiement ne s'applique pas en franchise TVA",
+        "Le rÃ´le de la PA dans la transmission est mentionnÃ©",
+        "L'amende pour dÃ©faut de transmission est mentionnÃ©e (250 EUR par transmission)",
+        "L'Ã©chÃ©ance est correcte (1er septembre 2027 pour PME/micro)"
       ]
     },
     {
       "id": 11,
       "name": "tva-reunion-dom-defaut",
-      "prompt": "Génère une facture pour ma société GigaruN (SASU, SIREN 123456789, La Réunion) pour une prestation de maintenance informatique de 1 000 € HT à un client réunionnais.",
-      "expected_output": "Le skill applique automatiquement la TVA DOM à 8,5% (85 EUR) sans que le taux soit précisé dans le prompt, et génère une facture conforme avec le total TTC de 1 085 EUR.",
+      "prompt": "GÃ©nÃ¨re une facture pour ma sociÃ©tÃ© GigaruN (SASU, SIREN 123456789, La RÃ©union) pour une prestation de maintenance informatique de 1 000 â‚¬ HT Ã  un client rÃ©unionnais.",
+      "expected_output": "Le skill applique automatiquement la TVA DOM Ã  8,5% (85 EUR) sans que le taux soit prÃ©cisÃ© dans le prompt, et gÃ©nÃ¨re une facture conforme avec le total TTC de 1 085 EUR.",
       "files": [],
       "assertions": [
-        "Le taux TVA appliqué est 8,5% (DOM La Réunion) et non 20%",
+        "Le taux TVA appliquÃ© est 8,5% (DOM La RÃ©union) et non 20%",
         "Le montant TVA est 85 EUR",
         "Le total TTC est 1 085 EUR",
         "La mention du taux 8,5% est explicite sur la facture",
-        "Le skill n'a pas demandé de confirmation du taux TVA"
+        "Le skill n'a pas demandÃ© de confirmation du taux TVA"
       ]
     },
     {
       "id": 12,
       "name": "tva-reunion-client-metropole",
-      "prompt": "Ma société est à La Réunion. Je facture une prestation à un client en métropole (Paris). Quel taux TVA j'applique ?",
-      "expected_output": "Le skill explique que la facturation DOM vers Métropole est considérée comme une exportation, exonérée de TVA (0%), avec droit à déduction. La facture doit mentionner l'exonération.",
+      "prompt": "Ma sociÃ©tÃ© est Ã  La RÃ©union. Je facture une prestation Ã  un client en mÃ©tropole (Paris). Quel taux TVA j'applique ?",
+      "expected_output": "Le skill explique que la facturation DOM vers MÃ©tropole est considÃ©rÃ©e comme une exportation, exonÃ©rÃ©e de TVA (0%), avec droit Ã  dÃ©duction. La facture doit mentionner l'exonÃ©ration.",
       "files": [],
       "assertions": [
-        "La facturation DOM → Métropole est qualifiée d'exportation",
-        "Le taux TVA applicable est 0% (exonération)",
-        "Le droit à déduction de la TVA sur les achats est mentionné",
-        "La mention d'exonération à faire figurer sur la facture est indiquée"
+        "La facturation DOM â†’ MÃ©tropole est qualifiÃ©e d'exportation",
+        "Le taux TVA applicable est 0% (exonÃ©ration)",
+        "Le droit Ã  dÃ©duction de la TVA sur les achats est mentionnÃ©",
+        "La mention d'exonÃ©ration Ã  faire figurer sur la facture est indiquÃ©e"
       ]
     },
     {
       "id": 13,
       "name": "zfang-eligibilite-reunion",
-      "prompt": "Je dirige une SASU de développement web à La Réunion, 3 salariés, CA 400 000 EUR. Suis-je éligible à la ZFANG et quel abattement puis-je espérer sur mon IS ?",
-      "expected_output": "Le skill identifie l'éligibilité ZFANG, applique le régime majoré 80% (TIC = secteur prioritaire), calcule l'abattement sur la base IS dans la limite de 300 000 EUR, et mentionne le formulaire 2082-SD à joindre à la 2065.",
+      "prompt": "Je dirige une SASU de dÃ©veloppement web Ã  La RÃ©union, 3 salariÃ©s, CA 400 000 EUR. Suis-je Ã©ligible Ã  la ZFANG et quel abattement puis-je espÃ©rer sur mon IS ?",
+      "expected_output": "Le skill identifie l'Ã©ligibilitÃ© ZFANG, applique le rÃ©gime majorÃ© 80% (TIC = secteur prioritaire), calcule l'abattement sur la base IS dans la limite de 300 000 EUR, et mentionne le formulaire 2082-SD Ã  joindre Ã  la 2065.",
       "files": [],
       "assertions": [
-        "La ZFANG est identifiée comme applicable (art. 44 quaterdecies CGI)",
-        "Le secteur TIC est reconnu comme secteur prioritaire (régime majoré)",
-        "Le taux d'abattement annoncé est 80%",
-        "Le plafond de 300 000 EUR de bénéfice abattu est mentionné",
-        "Le formulaire 2082-SD (CERFA 14043) est mentionné comme obligatoire",
-        "La durée du dispositif (jusqu'au 31/12/2030) est précisée"
+        "La ZFANG est identifiÃ©e comme applicable (art. 44 quaterdecies CGI)",
+        "Le secteur TIC est reconnu comme secteur prioritaire (rÃ©gime majorÃ©)",
+        "Le taux d'abattement annoncÃ© est 80%",
+        "Le plafond de 300 000 EUR de bÃ©nÃ©fice abattu est mentionnÃ©",
+        "Le formulaire 2082-SD (CERFA 14043) est mentionnÃ© comme obligatoire",
+        "La durÃ©e du dispositif (jusqu'au 31/12/2030) est prÃ©cisÃ©e"
       ]
     },
     {
       "id": 14,
       "name": "zfang-calcul-is",
-      "prompt": "Ma SASU à La Réunion (secteur TIC) a réalisé un bénéfice fiscal de 180 000 EUR en 2025. Calcule mon IS avec la ZFANG.",
-      "expected_output": "Le skill applique l'abattement ZFANG 80% plafonné à 300 000 EUR, calcule la base IS résiduelle (36 000 EUR), puis applique le taux IS PME 15% sur la tranche < 42 500 EUR.",
+      "prompt": "Ma SASU Ã  La RÃ©union (secteur TIC) a rÃ©alisÃ© un bÃ©nÃ©fice fiscal de 180 000 EUR en 2025. Calcule mon IS avec la ZFANG.",
+      "expected_output": "Le skill applique l'abattement ZFANG 80% plafonnÃ© Ã  300 000 EUR, calcule la base IS rÃ©siduelle (36 000 EUR), puis applique le taux IS PME 15% sur la tranche < 42 500 EUR.",
       "files": [],
       "assertions": [
-        "L'abattement ZFANG de 80% est appliqué sur 180 000 EUR = 144 000 EUR",
-        "La base IS résiduelle est 36 000 EUR",
-        "Le taux IS PME 15% est appliqué (bénéfice < 42 500 EUR)",
-        "L'IS calculé est 5 400 EUR",
-        "Le plafond ZFANG de 300 000 EUR est mentionné (non atteint ici)"
+        "L'abattement ZFANG de 80% est appliquÃ© sur 180 000 EUR = 144 000 EUR",
+        "La base IS rÃ©siduelle est 36 000 EUR",
+        "Le taux IS PME 15% est appliquÃ© (bÃ©nÃ©fice < 42 500 EUR)",
+        "L'IS calculÃ© est 5 400 EUR",
+        "Le plafond ZFANG de 300 000 EUR est mentionnÃ© (non atteint ici)"
       ]
     }
   ]
